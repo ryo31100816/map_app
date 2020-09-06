@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="http://maps.google.com/maps/api/js?key=api_key&language=ja"></script>
-
+    <title>{{ $title }}</title>
+    <script src="http://maps.google.com/maps/api/js?key={{ config('services.google-map.apikey') }}&language=ja"></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'&gt;>
     <style>
     html { height: 80% }
     body { height:80% }
@@ -13,12 +13,13 @@
     </style>
 </head>
 <body>
-    <div id="map"></div>
-    <input id="start" type="text" value="東京駅">
-    <input id="end" type="text" value="甲府駅"> 
+    <div class="container">
+        @yield('content')
+    </div>
+<div id="map"></div>
 
 
-    <script>
+{{--<script>
     // var MyLatLng = new google.maps.LatLng(35.6811673, 139.7670516);
     // var Options = {
     // zoom: 15,      //地図の縮尺値
@@ -31,7 +32,7 @@
 // 地図初期化（適当な場所を表示）
 var map = new google.maps.Map(document.getElementById("map"), {
     zoom : 10,
-    center: new google.maps.LatLng(35.7, 139.7),
+    center: new google.maps.LatLng(35.7, 139.7), 
     mayTypeId: google.maps.MapTypeId.ROADMAP
 });
 
@@ -54,8 +55,6 @@ directionsService.route({
         directionsRenderer.setDirections(response); 
     }
 });
-
-
-    </script>
+</script> --}}
 </body>
 </html>
