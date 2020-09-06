@@ -37,5 +37,6 @@ Route::get('/histories','HistoryController@index')->name('history.list');
 Route::get('/history/{id}','HistoryController@show')->name('history.show');
 Route::post('/history','HistoryController@store')->name('history.store');
 
-Route::get('/headquarters/{id}','HeadquartersController@show')->name('headquarters.show');
+Route::get('/headquarters/1','HeadquartersController@show')->name('headquarters.show');
 Route::get('/headquarters/edit/{id}','HeadquartersController@edit')->name('headquarters.edit');
+Route::post('/headquarters/update/{id}','HeadquartersController@update')->name('headquarters.update');

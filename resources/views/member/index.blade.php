@@ -6,6 +6,7 @@
     <div><a href={{ route('member.new') }} class="btn btn-outline-primary">新規</a></div>
     <div><a href={{ route('location.list') }} class="btn btn-outline-primary">Location</a></div>
     <div><a href={{ route('history.list') }} class="btn btn-outline-primary">History</a></div>
+    <div><a href={{ route('headquarters.show') }} class="btn btn-outline-primary">本社</a></div>
         @foreach($members as $member)
             <tr>
                 <td>

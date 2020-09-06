@@ -18,11 +18,9 @@ class CreateHistoriesTable extends Migration
         }
         Schema::create('histories', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('day');
+            $table->date('trip_date');
             $table->integer('member_id');
-            $table->string('member_name');
-            $table->integer('destination_id');
-            $table->string('destination');
+            $table->integer('location_id');
             $table->timestamps();
         });
     }

@@ -84,6 +84,8 @@ class LocationController extends Controller
         $location = Location::find($id);
         $location->name = $request->name;
         $location->address = $request->address;
+        $location->latitude = $request->latitude;
+        $location->longitude = $request->longitude;
         $location->save();
         return redirect()->route('location/location.show', ['id' => $location->id]);
     }

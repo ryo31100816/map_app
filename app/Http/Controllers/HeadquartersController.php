@@ -44,10 +44,11 @@ class HeadquartersController extends Controller
      * @param  \App\headquarters  $headquarters
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id, headquarters $headquarters)
+    public function show(Request $request, headquarters $headquarters)
     {
-        $headquarters = Headquarters::find($id);
-        return view('headquarters/headquarters_show', ['headquarters' => $headquarters]);
+        $title = 'Headquarters show';
+        $headquarters = Headquarters::find(1);
+        return view('headquarters/headquarters_show', ['title' => $title], ['headquarters' => $headquarters]);
     }
 
     /**
@@ -58,8 +59,9 @@ class HeadquartersController extends Controller
      */
     public function edit(Request $request, $id, headquarters $headquarters)
     {
+        $title = 'Headquarters edit';
         $headquarters = Headquarters::find($id);
-        return view('headquarters/headquarters_edit', ['headquarters' => $headquarters]);
+        return view('headquarters/headquarters_edit', ['title' => $title], ['headquarters' => $headquarters]);
     }
 
     /**
@@ -73,6 +75,8 @@ class HeadquartersController extends Controller
     {
         $headquarters = Headquarters::find($id);
         $headquarters->address = $request->address;
+        $headquarters->latitude = $request->latitude;
+        $headquarters->longitude = $request->longitude;
         $headquarters->save();
         return redirect()->route('headquarters/headquarters.show',['id' => $headquarters->id]);
     }

@@ -1,10 +1,13 @@
 @extends('layouts.layout')
 
 @section('content')
-  <h1>detail</h1>
-  <p>{{ $headquarters->trip_day }}</p>
-  <p>{{ $headquarters->address }}</p>
-
-  <p><a href={{ route('headquarters.edit', ['id' => $member->id]) }} class="btn btn-outline-primary">編集</a></p>
-
+  <h1>{{ $title }}</h1>
+  @if(isset($headquarters[0]))
+    <p>{{ $headquarters->address }}</p>
+    <p>{{ $headquarters->latitude }}</p>
+    <p>{{ $headquarters->longitude }}</p>
+    <p><a href={{ route('headquarters.edit', ['id' => $headquarters->id]) }} class="btn btn-outline-primary">編集</a></p>
+  @else
+    <p>本社の登録がありません。</p>
+  @endif
 @endsection

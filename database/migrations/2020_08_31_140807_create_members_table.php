@@ -20,6 +20,8 @@ class CreateMembersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('address');
+            $table->float('latitude',10,6)->comment('緯度');
+            $table->float('longitude',10,6)->comment('経度');
             $table->timestamps();
         });
     }

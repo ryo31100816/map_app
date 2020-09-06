@@ -19,7 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->tinyInteger('member_id');
+            $table->tinyInteger('role')->default(0)->index('index_role')->comment('権限');
             $table->rememberToken();
+            $table->timestamp('last_login_at')->nullable()->comment('最終ログイン');
             $table->timestamps();
         });
     }
