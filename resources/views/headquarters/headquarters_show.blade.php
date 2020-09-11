@@ -2,7 +2,7 @@
 
 @section('content')
   <h1>{{ $title }}</h1>
-  @if(isset($headquarters[0]))
+  @if(isset($headquarters))
     <p>{{ $headquarters->address }}</p>
     <p>{{ $headquarters->latitude }}</p>
     <p>{{ $headquarters->longitude }}</p>

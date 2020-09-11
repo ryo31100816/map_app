@@ -47,7 +47,7 @@ class HeadquartersController extends Controller
     public function show(Request $request, headquarters $headquarters)
     {
         $title = 'Headquarters show';
-        $headquarters = Headquarters::find(1);
+        $headquarters = headquarters::find(1);
         return view('headquarters/headquarters_show', ['title' => $title], ['headquarters' => $headquarters]);
     }
 
@@ -60,7 +60,7 @@ class HeadquartersController extends Controller
     public function edit(Request $request, $id, headquarters $headquarters)
     {
         $title = 'Headquarters edit';
-        $headquarters = Headquarters::find($id);
+        $headquarters = headquarters::find($id);
         return view('headquarters/headquarters_edit', ['title' => $title], ['headquarters' => $headquarters]);
     }
 

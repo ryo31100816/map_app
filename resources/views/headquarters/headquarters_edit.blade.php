@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.map_layout')
 
 @section('content')
 <h1>edit</h1>

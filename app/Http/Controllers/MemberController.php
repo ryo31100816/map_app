@@ -28,7 +28,7 @@ class MemberController extends Controller
     public function create()
     {
         $title = 'Member new';
-        return view('member/new', ['title' => $title], ['title' => $title]);
+        return view('member/new', ['title' => $title]);
     }
 
     /**

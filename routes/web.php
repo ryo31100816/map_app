@@ -14,29 +14,105 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/members');
+    return redirect('/member');
 });
 
-Route::get('/members','MemberController@index')->name('member.list');
-Route::get('/member/new','MemberController@create')->name('member.new');
-Route::get('/member/{id}','MemberController@show')->name('member.show');
-Route::get('/member/edit/{id}','MemberController@edit')->name('member.edit');
-Route::post('/member','MemberController@store')->name('member.store');
-Route::post('/member/update/{id}','MemberController@update')->name('member.update');
-Route::delete('/member/{id}','MemberController@destroy')->name('member.delete');
+Route::group(['prefix' => '/member', 'as' => 'member.'], function () {
+    Route::get('/', [
+        'as' => 'list',
+        'uses' => 'MemberController@index'
+    ]);
+    Route::get('/new', [
+        'as' => 'new',
+        'uses' => 'MemberController@create'
+    ]);
+    Route::get('/{id}', [
+        'as' => 'show',
+        'uses' => 'MemberController@show'
+    ]);
+    Route::get('/edit/{id}', [
+        'as' => 'edit',
+        'uses' => 'MemberController@edit'
+    ]);
+    Route::post('/', [
+        'as' => 'store',
+        'uses' => 'MemberController@store'
+    ]);
+    Route::post('/update/{id}', [
+        'as' => 'update',
+        'uses' => 'MemberController@update'
+    ]);
+    Route::delete('/{id}', [
+        'as' => 'delete',
+        'uses' => 'MemberController@destroy'
+    ]);
+});
 
-Route::get('/locations','LocationController@index')->name('location.list');
-Route::get('/location/new','LocationController@create')->name('location.new');
-Route::get('/location/{id}','LocationController@show')->name('location.show');
-Route::get('/location/edit/{id}','LocationController@edit')->name('location.edit');
-Route::post('/location','LocationController@store')->name('location.store');
-Route::post('/location/update/{id}','LocationController@update')->name('location.update');
-Route::delete('/location/{id}','LocationController@destroy')->name('location.delete');
+Route::group(['prefix' => '/location', 'as' => 'location.'], function() {
+    Route::get('/', [
+        'as' => 'list',
+        'uses' => 'LocationController@index'
+    ]);
+    Route::get('/new', [
+        'as' => 'new',
+        'uses' => 'LocationController@create'
+    ]);
+    Route::get('/{id}', [
+        'as' => 'show',
+        'uses' => 'LocationController@show'
+    ]);
+    Route::get('/edit/{id}', [
+        'as' => 'edit',
+        'uses' => 'LocationController@edit'
+    ]);
+    Route::post('/', [
+        'as' => 'store',
+        'uses' => 'LocationController@store'
+    ]);
+    Route::post('/update/{id}', [
+        'as' => 'update',
+        'uses' => 'LocationController@update'
+    ]);
+    Route::delete('/{id}', [
+        'as' => 'delete',
+        'uses' => 'LocationController@destroy'
+    ]);
+});
 
-Route::get('/histories','HistoryController@index')->name('history.list');
-Route::get('/history/{id}','HistoryController@show')->name('history.show');
-Route::post('/history','HistoryController@store')->name('history.store');
+Route::group(['prefix' => '/history', 'as' => 'history.'], function() {
+    Route::get('/', [
+        'as' => 'list',
+        'uses' => 'HistoryController@index'
+    ]);
+    Route::get('/member/{id}', [
+        'as' => 'getByMemberId',
+        'uses' => 'MemberHistoryController@getByMemberId'
+    ]);
+    Route::get('/member/{id}/new', [
+        'as' => 'new',
+        'uses' => 'HistoryController@create'
+    ]);
+    Route::get('/{id}', [
+        'as' => 'show',
+        'uses' => 'HistoryController@show'
+    ]);
+    Route::post('/', [
+        'as' => 'store',
+        'uses' => 'HistoryController@store'
+    ]);
+});
 
-Route::get('/headquarters/1','HeadquartersController@show')->name('headquarters.show');
-Route::get('/headquarters/edit/{id}','HeadquartersController@edit')->name('headquarters.edit');
-Route::post('/headquarters/update/{id}','HeadquartersController@update')->name('headquarters.update');
+Route::group(['prefix' => 'headquarters', 'as' => 'headquarters.'], function() {
+    Route::get('/1', [
+        'as' => 'show',
+        'uses' => 'HeadquartersController@show'
+    ]);
+    Route::get('/edit/{id}', [
+        'as' => 'edit',
+        'uses' => 'HeadquartersController@edit'
+    ]);
+    Route::post('/update/{id}', [
+        'as' => 'update',
+        'uses' => 'HeadquartersController@update'
+    ]);
+});

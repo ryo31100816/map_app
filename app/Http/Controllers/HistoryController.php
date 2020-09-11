@@ -25,9 +25,10 @@ class HistoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $id)
     {
-        //
+        $title = 'History new';
+        return view('history/history_new', compact('title', 'id'));
     }
 
     /**
@@ -50,7 +51,7 @@ class HistoryController extends Controller
     public function show(Request $request, $id, History $history)
     {
         $title = 'History show';
-        $history = History::where('member_id',$id)->get();
+        $history = History::find($id);
         return view('history/history_show', ['title' => $title], ['histories' => $history]);
     }
 
