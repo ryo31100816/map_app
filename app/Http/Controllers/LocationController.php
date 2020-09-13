@@ -16,7 +16,6 @@ class LocationController extends Controller
     {
         $title = 'Location index';
         $locations = Location::all();
-
         return view('location/location_index', ['title' => $title], ['locations' => $locations]);
     }
 

@@ -1,7 +1,6 @@
 @extends('layouts.map_layout')
 
 @section('content')
-<h1>edit</h1>
     {{ Form::model($location,['route' => ['location.update',$location->id]]) }}
         <div class='form-group'>
             {{ Form::label('name', 'Name:') }}

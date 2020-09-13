@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 
 @section('content')
-  <h1>{{ $title }}</h1>
   @if(isset($headquarters))
     <p>{{ $headquarters->address }}</p>
     <p>{{ $headquarters->latitude }}</p>

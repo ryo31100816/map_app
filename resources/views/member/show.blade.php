@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 
 @section('content')
-  <h1>detail</h1>
   <p>{{ $member->name }}</p>
   <p>{{ $member->address }}</p>
 

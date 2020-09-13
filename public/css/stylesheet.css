@@ -1,3 +1,27 @@
+html{
+    height: 100%;
+}
+
+body{
+    height:100%;
+}
+
+#map{
+    height: 50%; 
+    width: 100%;
+}
+
+#route{
+    height: 40%; 
+    width: 100%;
+    overflow: scroll;
+}
+
+.header{
+    height: 20%;
+    width: 100%;
+}
+
 .container{
     display: flex;
     flex-direction: row;

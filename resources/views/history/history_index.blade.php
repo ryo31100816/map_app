@@ -1,8 +1,9 @@
 @extends('layouts.layout')
 
 @section('content')
-    <table class="table table-striped table-hover">
+
     @if(isset($histories[0]))
+        <table class="table table-striped table-hover">
         @foreach($histories as $history)
             <tr>
                 <td>
@@ -12,8 +13,8 @@
                 <td>{{ $history->address }}</td>
             </tr>
         @endforeach
+        </table>
     @else
         <p>履歴がありません。</p>
     @endif
-    </table>
 @endsection

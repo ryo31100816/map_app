@@ -1,9 +1,9 @@
 @extends('layouts.layout')
 
 @section('content')
-    <p><a href={{ route( 'history.new', [$id]) }} class="btn btn-outline-primary">出張登録</a></p>
-    <table class="table table-striped table-hover">
+    <div><a href={{ route( 'history.new', [$id]) }} class="btn btn-outline-primary">出張登録</a></div>
     @if(isset($histories[0]))
+        <table class="table table-striped table-hover">
         @foreach($histories as $history)
             <tr>
                 <td>
@@ -13,8 +13,8 @@
                 <td>{{ $history->address }}</td>
             </tr>
         @endforeach
+        </table>
     @else
         <p>履歴がありません。</p>
     @endif
-    </table>
 @endsection

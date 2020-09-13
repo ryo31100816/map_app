@@ -16,7 +16,6 @@ class HistoryController extends Controller
     {
         $title = 'History index';
         $histories = History::all();
-
         return view('history/history_index', ['title' => $title], ['histories' => $histories]);
     }
 

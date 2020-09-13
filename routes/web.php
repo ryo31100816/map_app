@@ -116,3 +116,7 @@ Route::group(['prefix' => 'headquarters', 'as' => 'headquarters.'], function() {
         'uses' => 'HeadquartersController@update'
     ]);
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

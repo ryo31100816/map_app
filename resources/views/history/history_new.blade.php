@@ -1,7 +1,6 @@
 @extends('layouts.route_layout')
 
 @section('content')
-<h1>{{ $title }}</h1>
     {{ Form::open(['route' => 'history.store']) }}
     <div class="item">
             {{ Form::label('name', 'Name:') }}

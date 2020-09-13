@@ -1,7 +1,6 @@
 @extends('layouts.map_layout')
 
 @section('content')
-<h1>new</h1>
     {{ Form::open(['route' => 'location.store']) }}
         <div class='form-group'>
             {{ Form::label('name', 'Name:') }}
