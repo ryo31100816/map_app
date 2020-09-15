@@ -16,7 +16,7 @@ class HistoryController extends Controller
     {
         $title = 'History index';
         $histories = History::all();
-        return view('history/history_index', ['title' => $title], ['histories' => $histories]);
+        return view('history/index', ['title' => $title], ['histories' => $histories]);
     }
 
     /**
@@ -27,7 +27,7 @@ class HistoryController extends Controller
     public function create(Request $request, $id)
     {
         $title = 'History new';
-        return view('history/history_new', compact('title', 'id'));
+        return view('history/new', compact('title', 'id'));
     }
 
     /**
@@ -51,7 +51,7 @@ class HistoryController extends Controller
     {
         $title = 'History show';
         $history = History::find($id);
-        return view('history/history_show', ['title' => $title], ['histories' => $history]);
+        return view('history/show', ['title' => $title], ['histories' => $history]);
     }
 
     /**

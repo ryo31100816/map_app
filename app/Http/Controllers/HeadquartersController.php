@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\headquarters;
 use Illuminate\Http\Request;
+use App\Http\Requests\FormSendRequest;
 
 class HeadquartersController extends Controller
 {
@@ -48,7 +49,7 @@ class HeadquartersController extends Controller
     {
         $title = 'Headquarters show';
         $headquarters = headquarters::find(1);
-        return view('headquarters/headquarters_show', ['title' => $title], ['headquarters' => $headquarters]);
+        return view('headquarters/show', ['title' => $title], ['headquarters' => $headquarters]);
     }
 
     /**
@@ -61,7 +62,7 @@ class HeadquartersController extends Controller
     {
         $title = 'Headquarters edit';
         $headquarters = headquarters::find($id);
-        return view('headquarters/headquarters_edit', ['title' => $title], ['headquarters' => $headquarters]);
+        return view('headquarters/edit', ['title' => $title], ['headquarters' => $headquarters]);
     }
 
     /**
@@ -71,14 +72,14 @@ class HeadquartersController extends Controller
      * @param  \App\headquarters  $headquarters
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, headquarters $headquarters)
+    public function update(FormSendRequest $request, $id, headquarters $headquarters)
     {
-        $headquarters = Headquarters::find($id);
+        $headquarters = headquarters::find($id);
         $headquarters->address = $request->address;
         $headquarters->latitude = $request->latitude;
         $headquarters->longitude = $request->longitude;
         $headquarters->save();
-        return redirect()->route('headquarters/headquarters.show',['id' => $headquarters->id]);
+        return redirect()->route('headquarters.show',['id' => $headquarters->id]);
     }
 
     /**

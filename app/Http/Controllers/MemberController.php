@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Member;
 use Illuminate\Http\Request;
+use App\Http\Requests\FormSendRequest;
 
 class MemberController extends Controller
 {
@@ -12,10 +13,17 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $title = 'Member index';
-        $members = Member::all();
+        $search = $request->get('search');
+        if($search){
+            $query = Member::query();
+            $query->where('name', 'like', '%'.$search.'%');
+            $members = $query->get();
+        }else{
+            $members = Member::all();
+        }
         return view('member/index', ['title' => $title], ['members' => $members]);
     }
 
@@ -36,11 +44,13 @@ class MemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FormSendRequest $request)
     {
         $member = new Member();
         $member->name = $request->name;
         $member->address = $request->address;
+        $member->latitude = $request->latitude;
+        $member->longitude = $request->longitude;
         $member->save();
         return redirect()->route('member.show', ['id' => $member->id]);
     }
@@ -78,7 +88,7 @@ class MemberController extends Controller
      * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, Member $member)
+    public function update(FormSendRequest $request, $id, Member $member)
     {
         $member = Member::find($id);
         $member->name = $request->name;

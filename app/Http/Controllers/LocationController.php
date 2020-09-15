@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Location;
 use Illuminate\Http\Request;
+use App\Http\Requests\FormSendRequest;
 
 class LocationController extends Controller
 {
@@ -12,11 +13,18 @@ class LocationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $title = 'Location index';
-        $locations = Location::all();
-        return view('location/location_index', ['title' => $title], ['locations' => $locations]);
+        $search = $request->get('search');
+        if($search){
+            $query = Location::query();
+            $query->where('name', 'like', '%'.$search.'%');
+            $locations = $query->get();
+        }else{
+            $locations = Location::all();
+        }
+        return view('location/index', ['title' => $title], ['locations' => $locations]);
     }
 
     /**
@@ -27,7 +35,7 @@ class LocationController extends Controller
     public function create(Request $request)
     {
         $title = 'Location new';
-        return view('location/location_new', ['title' => $title]);
+        return view('location/new', ['title' => $title]);
     }
 
     /**
@@ -36,11 +44,13 @@ class LocationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FormSendRequest $request)
     {
         $location = new Location();
         $location->name = $request->name;
         $location->address = $request->address;
+        $location->latitude = $request->latitude;
+        $location->longitude = $request->longitude;
         $location->save();
         return redirect()->route('location.show', ['id' => $location->id]);
     }
@@ -55,7 +65,7 @@ class LocationController extends Controller
     {
         $title = 'Location show';
         $location = Location::find($id);
-        return view('location/location_show', ['title' => $title], ['location' => $location]);
+        return view('location/show', ['title' => $title], ['location' => $location]);
     }
 
     /**
@@ -68,7 +78,7 @@ class LocationController extends Controller
     {
         $title = 'Location edit';
         $location = Location::find($id);
-        return view('location/location_edit', ['title' => $title], ['location' => $location]);
+        return view('location/edit', ['title' => $title], ['location' => $location]);
     }
 
     /**
@@ -78,7 +88,7 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id,  Location $location)
+    public function update(FormSendRequest $request, $id,  Location $location)
     {
         $location = Location::find($id);
         $location->name = $request->name;
@@ -99,6 +109,6 @@ class LocationController extends Controller
     {
         $location = Location::find($id);
         $location->delete();
-        return redirect('location/locations_index');
+        return redirect('location/index');
     }
 }
