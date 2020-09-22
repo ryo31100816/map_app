@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Member extends Model
 {
-    public function histories(){
-        return $this->hasmany(History::class);
+    public function history(){
+        return $this->hasMany(History::class);
     }
 }

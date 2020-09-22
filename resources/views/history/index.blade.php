@@ -1,11 +1,15 @@
 @extends('layouts.layout')
 
 @section('content')
-    {{ Form::open(['method' => 'GET', 'route' => 'history.list']) }}
-    {{ Form::input('text', 'search', null) }}
-    {{ Form::submit('Search', array('class' => 'btn btn-primary')) }}
-    {{ Form::close() }}
-    @if(isset($histories[0]))
+    <div class="row">
+        <div class="container">
+            <div><a href={{ route('member.list') }} class="btn btn-outline-primary">メンバー</a></div>
+            {{ Form::open(['method' => 'GET', 'route' => 'history.list']) }}
+                {{ Form::input('text', 'search', null) }}
+                {{ Form::submit('Search', array('class' => 'btn btn-primary')) }}
+            {{ Form::close() }}
+            @if(isset($histories[0]))
+        </div>
         <table class="table table-striped table-hover">
         @foreach($histories as $history)
             <tr>
@@ -20,4 +24,5 @@
     @else
         <p>履歴がありません。</p>
     @endif
+    </div>
 @endsection

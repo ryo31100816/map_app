@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\headquarters;
+use App\Headquarters;
 use Illuminate\Http\Request;
 use App\Http\Requests\FormSendRequest;
 
@@ -42,10 +42,10 @@ class HeadquartersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\headquarters  $headquarters
+     * @param  \App\Headquarters  $headquarters
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, headquarters $headquarters)
+    public function show(Request $request, Headquarters $headquarters)
     {
         $title = 'Headquarters show';
         $headquarters = headquarters::find(1);
@@ -55,10 +55,10 @@ class HeadquartersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\headquarters  $headquarters
+     * @param  \App\Headquarters  $headquarters
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id, headquarters $headquarters)
+    public function edit(Request $request, $id, Headquarters $headquarters)
     {
         $title = 'Headquarters edit';
         $headquarters = headquarters::find($id);
@@ -69,10 +69,10 @@ class HeadquartersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\headquarters  $headquarters
+     * @param  \App\Headquarters  $headquarters
      * @return \Illuminate\Http\Response
      */
-    public function update(FormSendRequest $request, $id, headquarters $headquarters)
+    public function update(FormSendRequest $request, $id, Headquarters $headquarters)
     {
         $headquarters = headquarters::find($id);
         $headquarters->address = $request->address;
@@ -85,10 +85,10 @@ class HeadquartersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\headquarters  $headquarters
+     * @param  \App\Headquarters  $headquarters
      * @return \Illuminate\Http\Response
      */
-    public function destroy(headquarters $headquarters)
+    public function destroy(Headquarters $headquarters)
     {
         //
     }

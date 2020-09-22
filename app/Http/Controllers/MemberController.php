@@ -15,7 +15,7 @@ class MemberController extends Controller
      */
     public function index(Request $request)
     {
-        $title = 'Member index';
+        $title = 'Member List';
         $search = $request->get('search');
         if($search){
             $query = Member::query();

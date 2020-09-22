@@ -15,7 +15,7 @@ class LocationController extends Controller
      */
     public function index(Request $request)
     {
-        $title = 'Location index';
+        $title = 'Location List';
         $search = $request->get('search');
         if($search){
             $query = Location::query();
