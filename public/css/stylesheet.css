@@ -25,11 +25,15 @@ body{
     text-shadow: 0.3rem 0.3rem 0.3rem grey;
 }
 
-.container{
+.menu_bar{
     display: flex;
     flex-direction: row;
 }
 
 .area{
-    width: 80%;
+    width: 85%;
+}
+
+.search_form{
+    margin-left: auto;
 }

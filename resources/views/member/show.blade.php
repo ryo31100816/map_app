@@ -11,7 +11,7 @@
       @can('admin')
       <a href={{ route('member.edit', ['id' => $member->id]) }} class="btn btn-outline-primary">編集</a>
       @endcan
-      <a href={{ route('history.getByMemberId', ['id' => $member->id]) }} class="btn btn-outline-primary">履歴</a>
+      <a href={{ route('history.getByMemberId', ['id' => $member->id]) }} class="btn btn-outline-primary">出張</a>
       </td>
       <td>{{ $member->name }}</td>
       <td>{{ $member->address }}</td>

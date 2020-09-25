@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\History;
+use App\Member;
+use App\Location;
+use App\Headquarters;
 use Illuminate\Http\Request;
 
 class HistoryController extends Controller
@@ -27,7 +30,10 @@ class HistoryController extends Controller
     public function create(Request $request, $id)
     {
         $title = 'History new';
-        return view('history/new', compact('title', 'id'));
+        $member = Member::find($id);
+        $locations = Location::all();
+        $headquarters = Headquarters::find(1);
+        return view('history/new', compact('title', 'member','locations','headquarters'));
     }
 
     /**

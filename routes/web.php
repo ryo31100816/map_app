@@ -24,29 +24,31 @@ Route::middleware(['auth'])->group(function() {
             'as' => 'list',
             'uses' => 'MemberController@index'
         ]);
-        Route::get('/new', [
-            'as' => 'new',
-            'uses' => 'MemberController@create'
-        ]);
+        Route::group(['middleware' => ['can:admin']], function() {
+            Route::get('/new', [
+                'as' => 'new',
+                'uses' => 'MemberController@create'
+            ]);
+            Route::get('/edit/{id}', [
+                'as' => 'edit',
+                'uses' => 'MemberController@edit'
+            ]);
+            Route::post('/', [
+                'as' => 'store',
+                'uses' => 'MemberController@store'
+            ]);
+            Route::post('/update/{id}', [
+                'as' => 'update',
+                'uses' => 'MemberController@update'
+            ]);
+            Route::delete('/{id}', [
+                'as' => 'delete',
+                'uses' => 'MemberController@destroy'
+            ]);
+        });
         Route::get('/{id}', [
             'as' => 'show',
             'uses' => 'MemberController@show'
-        ]);
-        Route::get('/edit/{id}', [
-            'as' => 'edit',
-            'uses' => 'MemberController@edit'
-        ]);
-        Route::post('/', [
-            'as' => 'store',
-            'uses' => 'MemberController@store'
-        ]);
-        Route::post('/update/{id}', [
-            'as' => 'update',
-            'uses' => 'MemberController@update'
-        ]);
-        Route::delete('/{id}', [
-            'as' => 'delete',
-            'uses' => 'MemberController@destroy'
         ]);
     });
 
@@ -55,30 +57,32 @@ Route::middleware(['auth'])->group(function() {
             'as' => 'list',
             'uses' => 'LocationController@index'
         ]);
-        Route::get('/new', [
-            'as' => 'new',
-            'uses' => 'LocationController@create'
-        ]);
         Route::get('/{id}', [
             'as' => 'show',
             'uses' => 'LocationController@show'
         ]);
-        Route::get('/edit/{id}', [
-            'as' => 'edit',
-            'uses' => 'LocationController@edit'
-        ]);
-        Route::post('/', [
-            'as' => 'store',
-            'uses' => 'LocationController@store'
-        ]);
-        Route::post('/update/{id}', [
-            'as' => 'update',
-            'uses' => 'LocationController@update'
-        ]);
-        Route::delete('/{id}', [
-            'as' => 'delete',
-            'uses' => 'LocationController@destroy'
-        ]);
+        Route::group(['middleware' => ['can:admin']], function() {
+            Route::get('/new', [
+                'as' => 'new',
+                'uses' => 'LocationController@create'
+            ]);
+            Route::get('/edit/{id}', [
+                'as' => 'edit',
+                'uses' => 'LocationController@edit'
+            ]);
+            Route::post('/', [
+                'as' => 'store',
+                'uses' => 'LocationController@store'
+            ]);
+            Route::post('/update/{id}', [
+                'as' => 'update',
+                'uses' => 'LocationController@update'
+            ]);
+            Route::delete('/{id}', [
+                'as' => 'delete',
+                'uses' => 'LocationController@destroy'
+            ]);
+        });
     });
 
     Route::group(['prefix' => '/history', 'as' => 'history.'], function() {

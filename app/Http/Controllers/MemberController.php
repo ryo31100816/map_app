@@ -17,12 +17,21 @@ class MemberController extends Controller
     {
         $title = 'Member List';
         $search = $request->get('search');
+        $user_id = \Auth::user()->id;
+        $role = \Auth::user()->role;
+
         if($search){
             $query = Member::query();
             $query->where('name', 'like', '%'.$search.'%');
             $members = $query->get();
         }else{
-            $members = Member::all();
+            if($role === 0){
+                $members = Member::all();
+            }elseif($role === 5){   
+                $query = Member::query();
+                $query->where('user_id', '=', $user_id);
+                $members = $query->get();
+            }
         }
         return view('member/index', ['title' => $title], ['members' => $members]);
     }
@@ -96,6 +105,12 @@ class MemberController extends Controller
         $member->latitude = $request->latitude;
         $member->longitude = $request->longitude;
         $member->save();
+
+        $member_id = $member->id;
+        $user = $member->user;
+        $user->member_id = $member_id;
+        $user->save();
+
         return redirect()->route('member.show', ['id' => $member->id]);
     }
 
