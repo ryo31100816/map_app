@@ -4,8 +4,13 @@ $('.trip_date').change(function() {
 
 $('.start').change(function() {
     $('.end').removeClass('hide').animate({'marginLeft':'3rem'},500);
+    $('.location_list').removeClass('hide').animate({'marginLeft':'3rem'},500);
 });
 
 $('.end').change(function() {
     $('.submit').removeClass('hide').animate({'marginLeft':'3rem'},500);
+});
+
+$('#location_list').click(function() {
+    
 });

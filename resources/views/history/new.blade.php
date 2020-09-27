@@ -25,6 +25,10 @@
                         <option value="{{ $location->id }}">{{ $location->name }}</option>
                     @endforeach
                 </select>
+                <div class="location_list hide">
+                {{ Form::input('text', 'search', '', ['class' => 'search','v-model' => 'location_search']) }}
+                <p id="locaiton_list" class="btn btn-primary">検索</p>
+                </div>
                 <div class="form-group submit hide">
                     {{ Form::submit('登録する', ['class' => 'btn btn-primary']) }}
                 </div>

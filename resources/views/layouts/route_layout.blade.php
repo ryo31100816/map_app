@@ -12,8 +12,8 @@
         <p id="search" class="btn btn-primary">取得</p>
         @yield('content')
     </div>
-<script type="text/javascript" src="{{ asset('/js/route_initialize.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/js/route.js') }}"></script>
+
+<script type="text/javascript" src="{{ asset('/js/route_search.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/history_form.js') }}"></script>
 </body>
 </html>

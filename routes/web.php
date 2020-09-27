@@ -57,10 +57,6 @@ Route::middleware(['auth'])->group(function() {
             'as' => 'list',
             'uses' => 'LocationController@index'
         ]);
-        Route::get('/{id}', [
-            'as' => 'show',
-            'uses' => 'LocationController@show'
-        ]);
         Route::group(['middleware' => ['can:admin']], function() {
             Route::get('/new', [
                 'as' => 'new',
@@ -83,6 +79,10 @@ Route::middleware(['auth'])->group(function() {
                 'uses' => 'LocationController@destroy'
             ]);
         });
+        Route::get('/{id}', [
+            'as' => 'show',
+            'uses' => 'LocationController@show'
+        ]);
     });
 
     Route::group(['prefix' => '/history', 'as' => 'history.'], function() {

@@ -17,8 +17,8 @@ class UserSeeder extends Seeder
                 'name' => 'admin',
                 'email' => 'admin_user@mail.com',
                 'password' => bcrypt('admin_user'),
-                'member_id' => bigint(1),
-                'role' => tinyint(0)
+                'member_id' => 1,
+                'role' => 0
             ]);
         // 一般ユーザー
         factory(App\User::class, 10)->create();
