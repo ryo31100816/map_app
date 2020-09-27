@@ -37,3 +37,7 @@ body{
 .search_form{
     margin-left: auto;
 }
+
+.hide{
+    display: none;
+}

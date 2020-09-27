@@ -7,6 +7,7 @@ use App\Member;
 use App\Location;
 use App\Headquarters;
 use Illuminate\Http\Request;
+use App\Http\Requests\HistoryRequest;
 
 class HistoryController extends Controller
 {
@@ -42,7 +43,7 @@ class HistoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HistoryRequest $request)
     {
         //
     }

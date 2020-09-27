@@ -9,7 +9,7 @@
     <div id="map"></div>
     <div id="search" class="btn btn-primary">取得</div>
     @yield('content')
-<script type="text/javascript" src="{{ asset('/js/initialize.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/map_initialize.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/geocoding.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/location_search.js') }}"></script>
 </body>

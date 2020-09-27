@@ -6,6 +6,32 @@
         <p>{{ $member->name }}</p>
         <p>{{ $member->address }}</p>
         <p>{{ $headquarters->address }}</p>
+        <a href={{ route('history.list') }}>戻る</a>
+      {{--  {{ Form::select('location',$locations ,'',['placeholder' => '行先を選択してください']) }} --}}
+        {{ Form::open(['route' => 'history.store']) }}
+            <div class="row">
+                <div class="form-group">
+                {{ Form::input('date', 'trip_date', '', ['class' => 'trip_date']) }}
+                </div>
+                <div class="start_check hide">
+                {{ Form::label('start1', '本社:') }}
+                {{ Form::radio('start', '本社', false, ['class' => 'start','id' => 'start']) }}
+                {{ Form::label('start2', '自宅:') }}
+                {{ Form::radio('start', '自宅', false, ['class' => 'start','id' => 'end']) }}
+                </div>
+                <select class="end hide" name="end" size="10">
+                    <option value='' disabled selected style='display:none;'>選択してください</option>
+                    @foreach($locations as $location)
+                        <option value="{{ $location->id }}">{{ $location->name }}</option>
+                    @endforeach
+                </select>
+                <div class="form-group submit hide">
+                    {{ Form::submit('登録する', ['class' => 'btn btn-primary']) }}
+                </div>
+            </div>
+        {{ Form::close() }}
+
+
         <div class="row">
                 {{ Form::label('name', 'Name:') }}
                 {{ Form::text('name', '東京駅', ['id' => 'start_name']) }}
@@ -31,17 +57,6 @@
 
                 {{ Form::label('longitude', 'Longitude:') }}
                 {{ Form::text('longitude', null, ['id' => 'end_longitude']) }}
-        </div>
-      {{--  {{ Form::select('location',$locations ,'',['placeholder' => '行先を選択してください']) }} --}}
-        <select name="location" size="10">
-            <option value='' disabled selected style='display:none;'>選択してください</option>
-            @foreach($locations as $location)
-                <option value="{{ $location->id }}">{{ $location->name }}</option>
-            @endforeach
-        </select>
-        <div class="form-group">
-            {{ Form::submit('登録する', ['class' => 'btn btn-primary']) }}
-            <a href={{ route('history.list') }}>戻る</a>
         </div>
     </div>
     {{ Form::close() }}
