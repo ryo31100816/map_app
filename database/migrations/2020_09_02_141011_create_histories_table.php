@@ -19,9 +19,13 @@ class CreateHistoriesTable extends Migration
         Schema::create('histories', function (Blueprint $table) {
             $table->increments('id');
             $table->date('trip_date');
-            $table->integer('member_id');
-            $table->integer('location_id');
+            $table->integer('member_id')->unsigned();
+            $table->integer('start');
+            $table->integer('location_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

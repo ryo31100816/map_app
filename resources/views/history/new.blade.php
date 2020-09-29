@@ -1,33 +1,32 @@
 @extends('layouts.route_layout')
 
 @section('content')
-    {{ Form::open(['route' => 'history.store']) }}
     <div class="container">
-        <p>{{ $member->name }}</p>
+        <p>{{ $member->user->name }}</p>
         <p>{{ $member->address }}</p>
         <p>{{ $headquarters->address }}</p>
-        <a href={{ route('history.list') }}>戻る</a>
-      {{--  {{ Form::select('location',$locations ,'',['placeholder' => '行先を選択してください']) }} --}}
+        <a href={{ route('history.list') }}>戻る</a> 
         {{ Form::open(['route' => 'history.store']) }}
             <div class="row">
+                {{ Form::hidden('member_id', $member->id, ['id' => 'member_id']) }}
                 <div class="form-group">
                 {{ Form::input('date', 'trip_date', '', ['class' => 'trip_date']) }}
                 </div>
                 <div class="start_check hide">
                 {{ Form::label('start1', '本社:') }}
-                {{ Form::radio('start', '本社', false, ['class' => 'start','id' => 'start']) }}
+                {{ Form::radio('start', '0', false, ['class' => 'start']) }}
                 {{ Form::label('start2', '自宅:') }}
-                {{ Form::radio('start', '自宅', false, ['class' => 'start','id' => 'end']) }}
+                {{ Form::radio('start', '1', false, ['class' => 'start']) }}
                 </div>
-                <select class="end hide" name="end" size="10">
+                <select id="location_list" class="end hide" name="end" size="10">
                     <option value='' disabled selected style='display:none;'>選択してください</option>
                     @foreach($locations as $location)
                         <option value="{{ $location->id }}">{{ $location->name }}</option>
                     @endforeach
                 </select>
                 <div class="location_list hide">
-                {{ Form::input('text', 'search', '', ['class' => 'search','v-model' => 'location_search']) }}
-                <p id="locaiton_list" class="btn btn-primary">検索</p>
+                {{ Form::input('text', 'list_word', '', ['class' => 'search','id' => 'list_word']) }}
+                <p id="list_search" class="btn btn-primary">検索</p>
                 </div>
                 <div class="form-group submit hide">
                     {{ Form::submit('登録する', ['class' => 'btn btn-primary']) }}
@@ -35,6 +34,7 @@
             </div>
         {{ Form::close() }}
 
+        {{--  {{ Form::select('location',$locations ,'',['placeholder' => '行先を選択してください']) }} --}}
 
         <div class="row">
                 {{ Form::label('name', 'Name:') }}

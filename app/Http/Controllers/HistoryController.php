@@ -45,7 +45,13 @@ class HistoryController extends Controller
      */
     public function store(HistoryRequest $request)
     {
-        //
+        $history = new History();
+        $history->trip_date = $request->trip_date;
+        $history->member_id = $request->member_id;
+        $history->start = $request->start;
+        $history->location_id = $request->end;
+        $history->save();
+        return redirect()->route('history.show', ['id' => $history->id]);
     }
 
     /**
@@ -58,7 +64,7 @@ class HistoryController extends Controller
     {
         $title = 'History show';
         $history = History::find($id);
-        return view('history/show', ['title' => $title], ['histories' => $history]);
+        return view('history/show', ['title' => $title], ['history' => $history]);
     }
 
     /**
@@ -92,6 +98,34 @@ class HistoryController extends Controller
      */
     public function destroy(History $history)
     {
-        //
+        $history = History::find($id);
+        $history->delete();
+        return redirect('history/index');
+    }
+
+    public function locationAjax(Request $request)
+    {
+        $word = $request->get('word');
+        $query = Location::query();
+        $query->where('name', 'like', '%'.$word.'%');
+        $locations = $query->get();
+
+        return json_encode($locations);
+    }
+
+    public function routeAjax(Request $request)
+    {
+        $member_id = $request->get('member_id');
+        $start_value = $request->get('start');
+        $location_id = $request->get('end');
+
+        if($start_value === 0){
+            $start = Headquarters::find(1);
+        }else{
+            $start = Member::find($member_id);
+        }
+        $end = Location::find($location_id);
+        
+        return compact('start','end');
     }
 }

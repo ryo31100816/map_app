@@ -21,7 +21,11 @@
                 <td>
                 <a href={{ route('member.show',['id' => $member->id]) }}  class="btn btn-outline-primary">詳細</a>
                 </td>
-                <td>{{ $member->name }}</td>
+                @isset($member->user->name)
+                    <td>{{ $member->user->name }}</td>
+                @else
+                    <td>{{ $member->name }}</td>
+                @endisset
                 <td>{{ $member->address }}</td>
             </tr>
         @endforeach

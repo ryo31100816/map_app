@@ -38,6 +38,10 @@ body{
     margin-left: auto;
 }
 
+.delete-btn{
+    margin-left: auto;
+}
+
 .hide{
     display: none;
 }

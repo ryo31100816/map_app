@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 
 class UserSeeder extends Seeder
 {
@@ -9,7 +10,7 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
         //管理者用
         factory(App\User::class)
@@ -20,7 +21,17 @@ class UserSeeder extends Seeder
                 'member_id' => 1,
                 'role' => 0
             ]);
-        // 一般ユーザー
-        factory(App\User::class, 10)->create();
+        // 一般ユーザ
+        for($i = 2; $i <= 10; $i++){
+            App\User::create([
+                'name' => $faker->name,
+                'email' => $faker->unique()->safeEmail,
+                'email_verified_at' => now(),
+                'password' => bcrypt('common_user'), // password
+                'member_id' => $i,
+                'role' => 5,
+                'remember_token' => Str::random(10)
+            ]);
+        };
     }
 }

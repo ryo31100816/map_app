@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 
 class MembersTableSeeder extends Seeder
 {
@@ -9,8 +10,13 @@ class MembersTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        factory(App\Member::class, 10)->create();
+        for($i = 2; $i <= 10; $i++){
+            App\Member::create([
+                'user_id' => $i,
+                'address' => $faker->address,
+            ]);
+        }
     }
 }

@@ -13,7 +13,11 @@
       @endcan
       <a href={{ route('history.getByMemberId', ['id' => $member->id]) }} class="btn btn-outline-primary">出張</a>
       </td>
-      <td>{{ $member->name }}</td>
+      @isset($member->user->name)
+          <td>{{ $member->user->name }}</td>
+      @else
+          <td>{{ $member->name }}</td>
+      @endisset
       <td>{{ $member->address }}</td>
       <td>
       @can('admin')
