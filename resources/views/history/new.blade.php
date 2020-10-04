@@ -33,35 +33,5 @@
                 </div>
             </div>
         {{ Form::close() }}
-
-        {{--  {{ Form::select('location',$locations ,'',['placeholder' => '行先を選択してください']) }} --}}
-
-        <div class="row">
-                {{ Form::label('name', 'Name:') }}
-                {{ Form::text('name', '東京駅', ['id' => 'start_name']) }}
-            
-                {{ Form::label('address', 'Address:') }}
-                {{ Form::text('address', null, ['id' => 'start_address']) }}
-
-                {{ Form::label('latitude', 'Latitude:') }}
-                {{ Form::text('latitude', null, ['id' => 'start_latitude']) }}
-
-                {{ Form::label('longitude', 'Longitude:') }}
-                {{ Form::text('longitude', null, ['id' => 'start_longitude']) }}
-        </div>
-        <div class="row">
-                {{ Form::label('name', 'Name:') }}
-                {{ Form::text('name', '甲府駅', ['id' => 'end_name']) }}
-
-                {{ Form::label('address', 'Address:') }}
-                {{ Form::text('address', null, ['id' => 'end_address']) }}
-
-                {{ Form::label('latitude', 'Latitude:') }}
-                {{ Form::text('latitude', null, ['id' => 'end_latitude']) }}
-
-                {{ Form::label('longitude', 'Longitude:') }}
-                {{ Form::text('longitude', null, ['id' => 'end_longitude']) }}
-        </div>
     </div>
-    {{ Form::close() }}
 @endsection

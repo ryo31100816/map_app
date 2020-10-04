@@ -16,8 +16,8 @@ class CreateHeadquartersTable extends Migration
         Schema::create('headquarters', function (Blueprint $table) {
             $table->id();
             $table->string('address');
-            $table->float('latitude',10,6)->comment('緯度');
-            $table->float('longitude',10,6)->comment('経度');
+            $table->double('latitude',9,6)->comment('緯度');
+            $table->double('longitude',9,6)->comment('経度');
             $table->timestamps();
         });
     }

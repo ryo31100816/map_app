@@ -110,12 +110,12 @@ Route::middleware(['auth'])->group(function() {
             'as' => 'delete',
             'uses' => 'HistoryController@destroy'
         ]);
-        Route::post('/member/{id}/location/ajax', [
-            'uses' => 'HistoryController@locationAjax'
-        ]);
-        Route::post('/member/{id}/route/ajax', [
-            'uses' => 'HistoryController@routeAjax'
-        ]);
+        // Route::post('/member/{id}/location/ajax', [
+        //     'uses' => 'HistoryController@locationAjax'
+        // ]);
+        // Route::post('/member/{id}/route/ajax', [
+        //     'uses' => 'HistoryController@routeAjax'
+        // ]);
     });
 
     Route::group(['prefix' => 'headquarters', 'as' => 'headquarters.'], function() {

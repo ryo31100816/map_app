@@ -20,8 +20,8 @@ class CreateLocationsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('address')->nullable();
-            $table->float('latitude',10,6)->nullable()->comment('緯度');
-            $table->float('longitude',10,6)->nullable()->comment('経度');
+            $table->double('latitude',9,6)->nullable()->comment('緯度');
+            $table->double('longitude',9,6)->nullable()->comment('経度');
             $table->timestamps();
         });
     }

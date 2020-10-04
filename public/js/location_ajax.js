@@ -9,7 +9,7 @@ $(function(){
           headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           },
-          url: 'location/ajax',  //Routingのurl
+          url: '/api/location/ajax',  //Routingのurl
           type: 'POST', //送信方法
           dataType: 'json',
           data: {'word': word},

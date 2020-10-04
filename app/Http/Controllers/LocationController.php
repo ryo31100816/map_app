@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Location;
 use Illuminate\Http\Request;
 use App\Http\Requests\FormSendRequest;
+use Illuminate\Support\Facades\Log;
 
 class LocationController extends Controller
 {
@@ -47,11 +48,8 @@ class LocationController extends Controller
     public function store(FormSendRequest $request)
     {
         $location = new Location();
-        $location->name = $request->name;
-        $location->address = $request->address;
-        $location->latitude = $request->latitude;
-        $location->longitude = $request->longitude;
-        $location->save();
+        $data = $request->only('name','address','latitude','longitude');
+        $location->creates($data);
         return redirect()->route('location.show', ['id' => $location->id]);
     }
 
@@ -61,10 +59,10 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id, Location $location)
+    public function show(Request $request, $id)
     {
         $title = 'Location show';
-        $location = Location::find($id);
+        $location = Location::findOrFail($id);
         return view('location/show', ['title' => $title], ['location' => $location]);
     }
 
@@ -77,7 +75,7 @@ class LocationController extends Controller
     public function edit(Request $request, $id, Location $location)
     {
         $title = 'Location edit';
-        $location = Location::find($id);
+        $location = Location::findOrFail($id);
         return view('location/edit', ['title' => $title], ['location' => $location]);
     }
 
@@ -88,15 +86,12 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function update(FormSendRequest $request, $id,  Location $location)
+    public function update(FormSendRequest $request, $id)
     {
-        $location = Location::find($id);
-        $location->name = $request->name;
-        $location->address = $request->address;
-        $location->latitude = $request->latitude;
-        $location->longitude = $request->longitude;
-        $location->save();
-        return redirect()->route('location/location.show', ['id' => $location->id]);
+        $location = new Location();
+        $data = $request->only('name','address','latitude','longitude');
+        $record = $location->updates($data);
+        return redirect()->route('location/location.show', ['id' => $record->id]);
     }
 
     /**
@@ -105,10 +100,13 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Location $location)
+    public function destroy(Request $request, $id)
     {
-        $location = Location::find($id);
-        $location->delete();
-        return redirect('location/index');
+        $location = new Location();
+        $result = $location->deletes($id);
+        if($result === 0){
+            Log::info("${id}の削除に失敗しました。");
+        }
+        return redirect('location');
     }
 }

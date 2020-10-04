@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Member;
 use Illuminate\Http\Request;
 use App\Http\Requests\FormSendRequest;
+use Illuminate\Support\Facades\Log;
 
 class MemberController extends Controller
 {
@@ -56,11 +57,8 @@ class MemberController extends Controller
     public function store(FormSendRequest $request)
     {
         $member = new Member();
-        $member->name = $request->name;
-        $member->address = $request->address;
-        $member->latitude = $request->latitude;
-        $member->longitude = $request->longitude;
-        $member->save();
+        $data = $request->only('name','address','latitude','longitude');
+        $member->creates($data);
         return redirect()->route('member.show', ['id' => $member->id]);
     }
 
@@ -73,7 +71,7 @@ class MemberController extends Controller
     public function show(Request $request, $id, Member $member)
     {
         $title = 'Member show';
-        $member = Member::find($id);
+        $member = Member::findOrFail($id);
         return view('member/show', ['title' => $title], ['member' => $member]);
     }
 
@@ -86,7 +84,7 @@ class MemberController extends Controller
     public function edit(Request $request, $id, Member $member)
     {
         $title = 'Member edit';
-        $member = Member::find($id);
+        $member = Member::findOrFail($id);
         return view('member/edit', ['title' => $title], ['member' => $member]);
     }
 
@@ -97,21 +95,13 @@ class MemberController extends Controller
      * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(FormSendRequest $request, $id, Member $member)
+    public function update(FormSendRequest $request, $id)
     {
-        $member = Member::find($id);
-        $member->name = $request->name;
-        $member->address = $request->address;
-        $member->latitude = $request->latitude;
-        $member->longitude = $request->longitude;
-        $member->save();
+        $member = new Member();
+        $data = $request->only('name','address','latitude','longitude');
+        $member_record = $member->updates($data);
 
-        $member_id = $member->id;
-        $user = $member->user;
-        $user->member_id = $member_id;
-        $user->save();
-
-        return redirect()->route('member.show', ['id' => $member->id]);
+        return redirect()->route('member.show', ['id' => $member_record->id]);
     }
 
     /**
@@ -120,10 +110,13 @@ class MemberController extends Controller
      * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id, Member $member)
+    public function destroy(Request $request, $id)
     {
-        $member = Member::find($id);
-        $member->delete();
-        return redirect('/members');
+        $member = new Member();
+        $result = $member->deletes($id);
+        if($result === 0){
+            Log::info("${id}の削除に失敗しました。");
+        }
+        return redirect('/member');
     }
 }

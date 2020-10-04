@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Headquarters;
 use Illuminate\Http\Request;
-use App\Http\Requests\FormSendRequest;
+use App\Http\Requests\HeadquartersRequest;
+use Illuminate\Support\Facades\Log;
 
 class HeadquartersController extends Controller
 {
@@ -48,8 +49,8 @@ class HeadquartersController extends Controller
     public function show(Request $request, Headquarters $headquarters)
     {
         $title = 'Headquarters show';
-        $headquarters = headquarters::find(1);
-        return view('headquarters/show', ['title' => $title], ['headquarters' => $headquarters]);
+        $headquarters = Headquarters::find(1);
+        return view('Headquarters/show', ['title' => $title], ['headquarters' => $headquarters]);
     }
 
     /**
@@ -61,8 +62,8 @@ class HeadquartersController extends Controller
     public function edit(Request $request, $id, Headquarters $headquarters)
     {
         $title = 'Headquarters edit';
-        $headquarters = headquarters::find($id);
-        return view('headquarters/edit', ['title' => $title], ['headquarters' => $headquarters]);
+        $headquarters = Headquarters::findOrFail($id);
+        return view('Headquarters/edit', ['title' => $title], ['headquarters' => $headquarters]);
     }
 
     /**
@@ -72,14 +73,14 @@ class HeadquartersController extends Controller
      * @param  \App\Headquarters  $headquarters
      * @return \Illuminate\Http\Response
      */
-    public function update(FormSendRequest $request, $id, Headquarters $headquarters)
+    public function update(HeadquartersRequest $request, $id)
     {
-        $headquarters = headquarters::find($id);
-        $headquarters->address = $request->address;
-        $headquarters->latitude = $request->latitude;
-        $headquarters->longitude = $request->longitude;
-        $headquarters->save();
-        return redirect()->route('headquarters.show',['id' => $headquarters->id]);
+        $headquarters = new Headquarters();
+        $headquarters = Headquarters::findOrFail($id);
+        $data = $request->only('address','latitude','longitude');
+        $record = $headquarters->updates($data);
+        Log::debug(print_r($record,true));
+        return redirect()->route('headquarters.show',['id' => $record->id]);
     }
 
     /**

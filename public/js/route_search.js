@@ -12,7 +12,7 @@ $('#search').click(function() {
         headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: 'route/ajax',  //Routingのurl
+        url: '/api/route/ajax',  //Routingのurl
         type: 'POST', //送信方法
         dataType: 'json',
         data: {'member_id': member_id, 'start': start_value, 'end': end_value},

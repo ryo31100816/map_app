@@ -3,7 +3,7 @@
 @section('content')
   <div class="row">
     <div class="container">
-      <div><a href={{ route('location.list') }} class="btn btn-outline-primary">戻る</a></div>
+      <a href={{ route('location.list') }} class="btn btn-outline-primary">戻る</a>
     </div>
     <table class="table table-striped table-hover">
     <tr>

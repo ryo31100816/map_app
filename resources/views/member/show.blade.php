@@ -3,7 +3,7 @@
 @section('content')
 <div calss="row">
   <div class="container">
-    <div><a href={{ route('member.list') }} class="btn btn-outline-primary">戻る</a></div>
+    <a href={{ route('member.list') }} class="btn btn-outline-primary">戻る</a>
   </div>
   <table class="table table-striped table-hover">
     <tr>
@@ -28,4 +28,5 @@
       </td>
     </tr>
   </table>
+</div>
 @endsection

@@ -18,13 +18,12 @@ class CreateMembersTable extends Migration
         }
         Schema::create('members', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->string('name')->nullable();
             $table->string('address')->nullable();
-            $table->float('latitude',10,6)->nullable()->comment('緯度');
-            $table->float('longitude',10,6)->nullable()->comment('経度');
+            $table->double('latitude',9,6)->nullable()->comment('緯度');
+            $table->double('longitude',9,6)->nullable()->comment('経度');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -8,6 +8,8 @@ use App\Location;
 use App\Headquarters;
 use Illuminate\Http\Request;
 use App\Http\Requests\HistoryRequest;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class HistoryController extends Controller
 {
@@ -16,10 +18,19 @@ class HistoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $title = 'History List';
-        $histories = History::all();
+        $search = $request->get('search');
+        if($search){
+            // $query = History::query();
+            // $query->where('trip_date', 'like', '%'.$search.'%')
+            //       ->where('member_name', 'like', '%'.$search.'%')
+            //       ->where('location_name', 'like', '%'.$search.'%');
+            // $histories = $query->get();
+        }else{
+            $histories = History::all();
+        }
         return view('history/index', ['title' => $title], ['histories' => $histories]);
     }
 
@@ -31,7 +42,7 @@ class HistoryController extends Controller
     public function create(Request $request, $id)
     {
         $title = 'History new';
-        $member = Member::find($id);
+        $member = Member::findOrFail($id);
         $locations = Location::all();
         $headquarters = Headquarters::find(1);
         return view('history/new', compact('title', 'member','locations','headquarters'));
@@ -46,11 +57,8 @@ class HistoryController extends Controller
     public function store(HistoryRequest $request)
     {
         $history = new History();
-        $history->trip_date = $request->trip_date;
-        $history->member_id = $request->member_id;
-        $history->start = $request->start;
-        $history->location_id = $request->end;
-        $history->save();
+        $data = $request->only('trip_date','member_id','start','end');
+        $history->creates($data);
         return redirect()->route('history.show', ['id' => $history->id]);
     }
 
@@ -63,7 +71,7 @@ class HistoryController extends Controller
     public function show(Request $request, $id, History $history)
     {
         $title = 'History show';
-        $history = History::find($id);
+        $history = History::findOrFail($id);
         return view('history/show', ['title' => $title], ['history' => $history]);
     }
 
@@ -96,36 +104,14 @@ class HistoryController extends Controller
      * @param  \App\History  $history
      * @return \Illuminate\Http\Response
      */
-    public function destroy(History $history)
+    public function destroy(Request $request, $id)
     {
-        $history = History::find($id);
-        $history->delete();
-        return redirect('history/index');
-    }
-
-    public function locationAjax(Request $request)
-    {
-        $word = $request->get('word');
-        $query = Location::query();
-        $query->where('name', 'like', '%'.$word.'%');
-        $locations = $query->get();
-
-        return json_encode($locations);
-    }
-
-    public function routeAjax(Request $request)
-    {
-        $member_id = $request->get('member_id');
-        $start_value = $request->get('start');
-        $location_id = $request->get('end');
-
-        if($start_value === 0){
-            $start = Headquarters::find(1);
-        }else{
-            $start = Member::find($member_id);
+        $history = new History();
+        $result = $history->deletes($id);
+        if($result === 0){
+            Log::info("${id}の削除に失敗しました。");
         }
-        $end = Location::find($location_id);
-        
-        return compact('start','end');
+        return redirect('/history');
     }
+
 }
