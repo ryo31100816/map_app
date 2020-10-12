@@ -3,12 +3,14 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-between">
-            <div class="col-md-6 text-center text-lg-left">
+            <div class="col-md-5 text-center text-lg-left">
                 <a href={{ route('member.list') }} class="btn btn-outline-primary">メンバー</a>
             </div>
-            <div class="col-md-6 text-center text-lg-right">
-                {{ Form::open(['method' => 'GET', 'route' => 'history.list']) }}
-                    {{ Form::input('text', 'search', null, ['placeHolder' => '日付']) }}
+            <div class="col-md-7 text-center text-lg-right">
+                {{ Form::open(['method' => 'GET', 'route' => 'history.list','class' => 'row']) }}
+                    {{ Form::input('date', 'trip_date', null, ['placeHolder' => '日付']) }}
+                    {{ Form::input('text', 'member_name', null, ['placeHolder' => '名前']) }}
+                    {{ Form::input('text', 'location_name', null, ['placeHolder' => '目的地']) }}
                     {{ Form::submit('検索', array('class' => 'btn btn-primary')) }}
                 {{ Form::close() }}
             </div>

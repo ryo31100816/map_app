@@ -15,7 +15,7 @@ class History extends Model
         return $this->belongsTo(Location::class);
     }
 
-    public function creates($data){
+    public function createByRequest($data){
         DB::beginTransaction();
         try {
             $this->fill($data)->save();
@@ -29,7 +29,7 @@ class History extends Model
         }
     }
 
-    public function deletes($id) {
+    public function deleteByRequest($id) {
         DB::beginTransaction();
         try {
             $result = History::findOrFail($id)->delete();

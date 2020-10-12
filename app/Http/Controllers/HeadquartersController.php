@@ -78,7 +78,7 @@ class HeadquartersController extends Controller
         $headquarters = new Headquarters();
         $headquarters = Headquarters::findOrFail($id);
         $data = $request->only('address','latitude','longitude');
-        $record = $headquarters->updates($data);
+        $record = $headquarters->updateByRequest($data);
         Log::debug(print_r($record,true));
         return redirect()->route('headquarters.show',['id' => $record->id]);
     }

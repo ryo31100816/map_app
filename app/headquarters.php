@@ -12,7 +12,7 @@ class Headquarters extends Model
         'address', 'latitude', 'longitude',
     ];
 
-    public function updates($data) {
+    public function updateByRequest($data) {
         DB::beginTransaction();
         try {
             $record = Headquarters::findOrFail($this->id);

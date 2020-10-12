@@ -21,13 +21,19 @@ class HistoryController extends Controller
     public function index(Request $request)
     {
         $title = 'History List';
-        $search = $request->get('search');
-        if($search){
-            // $query = History::query();
-            // $query->where('trip_date', 'like', '%'.$search.'%')
-            //       ->where('member_name', 'like', '%'.$search.'%')
-            //       ->where('location_name', 'like', '%'.$search.'%');
-            // $histories = $query->get();
+        $search = array(
+            'trip_date' => $request->get('trip_date'),
+            'member_name' => $request->get('member_name'),
+            'location_name' => $request->get('location_name')
+        );
+        if(array_filter($search)){
+            $trip_date = $search['trip_date'];
+            $histories = History::when($trip_date, function($query, $trip_date){
+                return $query->where('trip_date', $trip_date);
+            })
+            ->whereHas('location',function($q) use ($search) {$q->where('name', 'like', '%'.$search['location_name'].'%');})
+            ->whereHas('member',function($q) use ($search) {$q->where('name', 'like', '%'.$search['member_name'].'%');})
+            ->get();
         }else{
             $histories = History::all();
         }
@@ -58,7 +64,7 @@ class HistoryController extends Controller
     {
         $history = new History();
         $data = $request->only('trip_date','member_id','start','end');
-        $history->creates($data);
+        $history->createByRequest($data);
         return redirect()->route('history.show', ['id' => $history->id]);
     }
 
@@ -107,7 +113,7 @@ class HistoryController extends Controller
     public function destroy(Request $request, $id)
     {
         $history = new History();
-        $result = $history->deletes($id);
+        $result = $history->deleteByRequest($id);
         if($result === 0){
             Log::info("${id}の削除に失敗しました。");
         }

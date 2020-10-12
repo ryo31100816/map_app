@@ -8,12 +8,10 @@
     <header>@include('layouts.header')</header>
     <div id="map"></div>
     <div id="route"></div>
-    <div class="container">
-        <p id="search" class="btn btn-primary">取得</p>
-        @yield('content')
-    </div>
-<script type="text/javascript" src="{{ asset('/js/location_ajax.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/js/route_search.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/js/history_form.js') }}"></script>
+    <div id="search" class="btn btn-primary">取得</div>
+    @yield('content')
+    <script type="text/javascript" src="{{ asset('/js/location_ajax.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/route_search.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/history_form.js') }}"></script>
 </body>
 </html>

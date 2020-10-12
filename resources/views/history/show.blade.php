@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
     <a href={{ route('history.list') }} class="btn btn-outline-primary">戻る</a>
-    {{ Form::open(['method'=>'delete','route'=>['history.delete',$history->id], 'class' => 'delete-btn']) }}
+    {{ Form::open(['method'=>'delete','route'=>['history.delete',$history->id], 'class' => 'ml-auto']) }}
       {{Form::submit('削除',['class' => 'btn btn-outline-secondary']) }}
     {{ Form::close() }}
     </div>

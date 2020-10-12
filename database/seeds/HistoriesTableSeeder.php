@@ -5,7 +5,7 @@ use App\History;
 use App\Member;
 use App\Location;
 
-class HistoriesSeeder extends Seeder
+class HistoriesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

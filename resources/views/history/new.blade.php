@@ -2,33 +2,37 @@
 
 @section('content')
     <div class="container">
-        <p>{{ $member->user->name }}</p>
-        <p>{{ $member->address }}</p>
-        <p>{{ $headquarters->address }}</p>
         <a href={{ route('history.list') }}>戻る</a> 
+        <div class="row justify-content-around">
+            <p>{{ $member->user->name }}</p>
+            <p>{{ $member->address }}</p>
+            <p>{{ $headquarters->address }}</p>
+        </div>
         {{ Form::open(['route' => 'history.store']) }}
-            <div class="row">
+            <div class="row text-center">
                 {{ Form::hidden('member_id', $member->id, ['id' => 'member_id']) }}
-                <div class="form-group">
+                <div class="col-sm-12 col-md-2">
                 {{ Form::input('date', 'trip_date', '', ['class' => 'trip_date']) }}
                 </div>
-                <div class="start_check hide">
+                <div class="col-sm-12 col-md-2 start_check hide">
                 {{ Form::label('start1', '本社:') }}
                 {{ Form::radio('start', '0', false, ['class' => 'start']) }}
                 {{ Form::label('start2', '自宅:') }}
                 {{ Form::radio('start', '1', false, ['class' => 'start']) }}
                 </div>
-                <select id="location_list" class="end hide" name="end" size="10">
-                    <option value='' disabled selected style='display:none;'>選択してください</option>
-                    @foreach($locations as $location)
-                        <option value="{{ $location->id }}">{{ $location->name }}</option>
-                    @endforeach
-                </select>
-                <div class="location_list hide">
-                {{ Form::input('text', 'list_word', '', ['class' => 'search','id' => 'list_word']) }}
-                <p id="list_search" class="btn btn-primary">検索</p>
+                <div class="row col-sm-12 col-md-4 location_list hide">
+                    <select id="location_list" class="end" name="end" size="5">
+                        <option value='' disabled selected style='display:none;'>選択してください</option>
+                        @foreach($locations as $location)
+                            <option value="{{ $location->id }}">{{ $location->name }}</option>
+                        @endforeach
+                    </select>
+                    <div>
+                    {{ Form::input('text', 'list_word', '', ['class' => 'search','id' => 'list_word']) }}
+                    <p id="list_search" class="btn btn-primary">検索</p>
+                    </div>
                 </div>
-                <div class="form-group submit hide">
+                <div class=" col-sm-12 col-md-2 submit hide">
                     {{ Form::submit('登録する', ['class' => 'btn btn-primary']) }}
                 </div>
             </div>

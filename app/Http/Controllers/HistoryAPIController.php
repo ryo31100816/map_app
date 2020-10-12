@@ -15,7 +15,7 @@ class HistoryAPIController extends Controller
         $start_value = $request->get('start');
         $location_id = $request->get('end');
 
-        if($start_value === 0){
+        if($start_value == 0){
             $start = Headquarters::find(1);
         }else{
             $start = Member::find($member_id);

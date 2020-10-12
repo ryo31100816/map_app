@@ -15,6 +15,7 @@ class MembersTableSeeder extends Seeder
         for($i = 2; $i <= 10; $i++){
             App\Member::create([
                 'user_id' => $i,
+                'name' => App\User::find($i)->name,
                 'address' => $faker->address,
             ]);
         }

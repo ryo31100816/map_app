@@ -49,7 +49,7 @@ class LocationController extends Controller
     {
         $location = new Location();
         $data = $request->only('name','address','latitude','longitude');
-        $location->creates($data);
+        $location->createByRequest($data);
         return redirect()->route('location.show', ['id' => $location->id]);
     }
 
@@ -90,7 +90,7 @@ class LocationController extends Controller
     {
         $location = new Location();
         $data = $request->only('name','address','latitude','longitude');
-        $record = $location->updates($data);
+        $record = $location->updateByRequest($data);
         return redirect()->route('location/location.show', ['id' => $record->id]);
     }
 
@@ -103,7 +103,7 @@ class LocationController extends Controller
     public function destroy(Request $request, $id)
     {
         $location = new Location();
-        $result = $location->deletes($id);
+        $result = $location->deleteByRequest($id);
         if($result === 0){
             Log::info("${id}の削除に失敗しました。");
         }

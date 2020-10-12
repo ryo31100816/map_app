@@ -58,7 +58,7 @@ class MemberController extends Controller
     {
         $member = new Member();
         $data = $request->only('name','address','latitude','longitude');
-        $member->creates($data);
+        $member->createByRequest($data);
         return redirect()->route('member.show', ['id' => $member->id]);
     }
 
@@ -99,7 +99,7 @@ class MemberController extends Controller
     {
         $member = new Member();
         $data = $request->only('name','address','latitude','longitude');
-        $member_record = $member->updates($data);
+        $member_record = $member->updateByRequest($data);
 
         return redirect()->route('member.show', ['id' => $member_record->id]);
     }
@@ -113,7 +113,7 @@ class MemberController extends Controller
     public function destroy(Request $request, $id)
     {
         $member = new Member();
-        $result = $member->deletes($id);
+        $result = $member->deleteByRequest($id);
         if($result === 0){
             Log::info("${id}の削除に失敗しました。");
         }

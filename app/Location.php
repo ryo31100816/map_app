@@ -12,7 +12,7 @@ class Location extends Model
         return $this->hasMany(History::class);
     }
 
-    public function creates($data){
+    public function createByRequest($data){
         DB::beginTransaction();
         try {
             $this->fill($data)->save();
@@ -26,7 +26,7 @@ class Location extends Model
         }
     }
 
-    public function updates($data) {
+    public function updateByRequest($data) {
         DB::beginTransaction();
         try {
             $record = Location::findOrFail($id);
@@ -41,7 +41,7 @@ class Location extends Model
         }
     }
 
-    public function deletes($id) {
+    public function deleteByRequest($id) {
         DB::beginTransaction();
         try {
             $result = Location::findOrFail($id)->delete();

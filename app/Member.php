@@ -24,7 +24,7 @@ class Member extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function creates($data){
+    public function createByRequest($data){
         DB::beginTransaction();
         try {
             $this->fill($data)->save();
@@ -37,7 +37,7 @@ class Member extends Model
         }
     }
 
-    public function updates($data) {
+    public function updateByRequest($data) {
         DB::beginTransaction();
         try {
             $member_record = Member::findOrFail($this->id);
@@ -55,7 +55,7 @@ class Member extends Model
         }
     }
 
-    public function deletes($id) {
+    public function deleteByRequest($id) {
         DB::beginTransaction();
         try {
             $result = Member::findOrFail($id)->delete();
