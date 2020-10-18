@@ -97,5 +97,5 @@ Password:　admin_user
 　・Seederによる初期データの作成<br>
 　・Middlewareによる認証処理<br>
 　・APIルーティング<br>
-　・非同期処理によるテーブルレコードの得<br>
+　・非同期処理によるテーブルレコードの取得<br>
 　・GoogleMapAPIによるロケーションとルート検索<br>
