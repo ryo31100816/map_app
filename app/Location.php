@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Log;
 
 class Location extends Model
 {
+    protected $fillable = [
+        'name','address','latitude','longitude'
+    ];
+
+    protected $guarded = [
+        'id', 
+    ];
+
     public function history(){
         return $this->hasMany(History::class);
     }

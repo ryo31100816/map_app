@@ -26,7 +26,8 @@ class HistoryRequest extends FormRequest
         return [
             'trip_date' => 'required',
             'start' => 'required',
-            'end' => 'required',
+            'location_id' => 'required',
+            'distance' => 'required',
         ];
     }
 
@@ -35,7 +36,8 @@ class HistoryRequest extends FormRequest
         return [
             'trip_date.required' => ':attributeは必須です。',
             'start.required' => ':attributeは必須です。',
-            'end.required' => ':attributeは必須です。',
+            'location_id.required' => ':attributeは必須です。',
+            'distance.required' => ':attributeは必須です。',
         ];
     }
 
@@ -44,7 +46,8 @@ class HistoryRequest extends FormRequest
         return [
             'trip_date' => '出張日',
             'start' => '出発地',
-            'end' => '目的地',
+            'location_id' => '目的地',
+            'distance' => '距離',
         ];
     }
 }

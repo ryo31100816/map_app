@@ -11,17 +11,20 @@
         {{ Form::open(['route' => 'history.store']) }}
             <div class="row text-center">
                 {{ Form::hidden('member_id', $member->id, ['id' => 'member_id']) }}
+                {{ Form::hidden('distance', "", ['id' => 'distance']) }}
                 <div class="col-sm-12 col-md-2">
                 {{ Form::input('date', 'trip_date', '', ['class' => 'trip_date']) }}
+                {{ $errors->first('trip_date') }}
                 </div>
                 <div class="col-sm-12 col-md-2 start_check hide">
                 {{ Form::label('start1', '本社:') }}
                 {{ Form::radio('start', '0', false, ['class' => 'start']) }}
                 {{ Form::label('start2', '自宅:') }}
                 {{ Form::radio('start', '1', false, ['class' => 'start']) }}
+                {{ $errors->first('start') }}
                 </div>
                 <div class="row col-sm-12 col-md-4 location_list hide">
-                    <select id="location_list" class="end" name="end" size="5">
+                    <select id="location_list" class="end" name="location_id" size="5">
                         <option value='' disabled selected style='display:none;'>選択してください</option>
                         @foreach($locations as $location)
                             <option value="{{ $location->id }}">{{ $location->name }}</option>
@@ -31,6 +34,7 @@
                     {{ Form::input('text', 'list_word', '', ['class' => 'search','id' => 'list_word']) }}
                     <p id="list_search" class="btn btn-primary">検索</p>
                     </div>
+                    {{ $errors->first('end') }}
                 </div>
                 <div class=" col-sm-12 col-md-2 submit hide">
                     {{ Form::submit('登録する', ['class' => 'btn btn-primary']) }}

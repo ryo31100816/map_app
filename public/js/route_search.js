@@ -73,9 +73,6 @@ function geocodingRoute(start_lat, start_lng, end_lat, end_lng) {
     let directionsService = new google.maps.DirectionsService;
     let directionsRenderer = new google.maps.DirectionsRenderer;
 
-    // let start = document.getElementById('start_name').value;
-    // let end = document.getElementById('end_name').value;
-
     // ルート検索を実行
     directionsService.route({
         origin: new google.maps.LatLng(start_lat, start_lng),
@@ -85,17 +82,16 @@ function geocodingRoute(start_lat, start_lng, end_lat, end_lng) {
         optimizeWaypoints: true,
         avoidHighways: false,
         avoidTolls: false   
-    }, function(response, status) {
-        console.log(response);
+    }, function(result, status) {
+        console.log(result);
         if (status === google.maps.DirectionsStatus.OK) {
+            document.getElementById('distance').value = result.routes[0].legs[0].distance.value;
             // ルート検索の結果を地図上に描画
             let map = new google.maps.Map(document.getElementById('map'));
             directionsRenderer.setMap(map);
-            directionsRenderer.setDirections(response);
-            directionsRenderer.setPanel(document.getElementById('route'))
-
+            directionsRenderer.setDirections(result);
+            document.getElementById('route').innerHTML = '';
+            directionsRenderer.setPanel(document.getElementById('route'));
         }
     });
-    //オプション
-    // 車　地点５箇所　マーカー　ライン　経路順メッセ　
 };

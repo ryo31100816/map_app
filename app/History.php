@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Log;
 
 class History extends Model
 {
+    protected $fillable = [
+        'trip_date', 'member_id','start','location_id','distance'
+    ];
+
+    protected $guarded = [
+        'id', 
+    ];
+
     public function member(){
         return $this->belongsTo(Member::class);
     }

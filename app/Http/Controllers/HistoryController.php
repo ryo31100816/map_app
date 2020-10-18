@@ -63,7 +63,7 @@ class HistoryController extends Controller
     public function store(HistoryRequest $request)
     {
         $history = new History();
-        $data = $request->only('trip_date','member_id','start','end');
+        $data = $request->only('trip_date','member_id','start','location_id','distance');
         $history->createByRequest($data);
         return redirect()->route('history.show', ['id' => $history->id]);
     }

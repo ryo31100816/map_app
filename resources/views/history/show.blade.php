@@ -24,7 +24,10 @@
       @endif
     </tr>
     <tr>
-      <td>目的地：{{ $history->location->name }} {{ $history->location->address }}</td>
+      <td>目的地：{{ $history->location->name }}  {{ $history->location->address }}</td>
+    </tr>
+    <tr>
+      <td>距離：{{ $history->distance }}</td>
     </tr>
   </table>
 @endsection

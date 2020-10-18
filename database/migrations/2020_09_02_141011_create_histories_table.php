@@ -22,6 +22,7 @@ class CreateHistoriesTable extends Migration
             $table->integer('member_id')->unsigned();
             $table->integer('start');
             $table->integer('location_id')->unsigned();
+            $table->integer('distance')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade')->onUpdate('cascade');
