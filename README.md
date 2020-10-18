@@ -1,6 +1,6 @@
 # 出張管理アプリ
 
-※テスト用アカウントはこちらです。
+※テスト用アカウントはこちらです。<br>
 E-mail:　admin_user@mail.com
 Password:　admin_user
 
@@ -16,11 +16,75 @@ Password:　admin_user
 
 ## Ⅳテーブル
 　・Users
-
-　・Members
++-------------------+------------------+------+-----+---------+----------------+
+| Field             | Type             | Null | Key | Default | Extra          |
++-------------------+------------------+------+-----+---------+----------------+
+| id                | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| name              | varchar(255)     | NO   |     | NULL    |                |
+| email             | varchar(255)     | NO   | UNI | NULL    |                |
+| email_verified_at | timestamp        | YES  |     | NULL    |                |
+| password          | varchar(255)     | NO   |     | NULL    |                |
+| member_id         | tinyint(4)       | NO   |     | NULL    |                |
+| role              | tinyint(4)       | NO   | MUL | 0       |                |
+| remember_token    | varchar(100)     | YES  |     | NULL    |                |
+| last_login_at     | timestamp        | YES  |     | NULL    |                |
+| created_at        | timestamp        | YES  |     | NULL    |                |
+| updated_at        | timestamp        | YES  |     | NULL    |                |
++-------------------+------------------+------+-----+---------+----------------+
+　
+ ・Members
++------------+------------------+------+-----+---------+----------------+
+| Field      | Type             | Null | Key | Default | Extra          |
++------------+------------------+------+-----+---------+----------------+
+| id         | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| user_id    | int(10) unsigned | YES  |     | NULL    |                |
+| name       | varchar(255)     | YES  |     | NULL    |                |
+| address    | varchar(255)     | YES  |     | NULL    |                |
+| latitude   | double(9,6)      | YES  |     | NULL    |                |
+| longitude  | double(9,6)      | YES  |     | NULL    |                |
+| created_at | timestamp        | YES  |     | NULL    |                |
+| updated_at | timestamp        | YES  |     | NULL    |                |
++------------+------------------+------+-----+---------+----------------+
+   
 　・Locations
++------------+------------------+------+-----+---------+----------------+
+| Field      | Type             | Null | Key | Default | Extra          |
++------------+------------------+------+-----+---------+----------------+
+| id         | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(255)     | NO   |     | NULL    |                |
+| address    | varchar(255)     | YES  |     | NULL    |                |
+| latitude   | double(9,6)      | YES  |     | NULL    |                |
+| longitude  | double(9,6)      | YES  |     | NULL    |                |
+| created_at | timestamp        | YES  |     | NULL    |                |
+| updated_at | timestamp        | YES  |     | NULL    |                |
++------------+------------------+------+-----+---------+----------------+
+ 
 　・Histories
++-------------+------------------+------+-----+---------+----------------+
+| Field       | Type             | Null | Key | Default | Extra          |
++-------------+------------------+------+-----+---------+----------------+
+| id          | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| trip_date   | date             | NO   |     | NULL    |                |
+| member_id   | int(10) unsigned | NO   | MUL | NULL    |                |
+| start       | int(11)          | NO   |     | NULL    |                |
+| location_id | int(10) unsigned | NO   | MUL | NULL    |                |
+| distance    | int(11)          | YES  |     | NULL    |                |
+| created_at  | timestamp        | YES  |     | NULL    |                |
+| updated_at  | timestamp        | YES  |     | NULL    |                |
+| deleted_at  | timestamp        | YES  |     | NULL    |                |
++-------------+------------------+------+-----+---------+----------------+
+ 
 　・Headquarters
++------------+---------------------+------+-----+---------+----------------+
+| Field      | Type                | Null | Key | Default | Extra          |
++------------+---------------------+------+-----+---------+----------------+
+| id         | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
+| address    | varchar(255)        | NO   |     | NULL    |                |
+| latitude   | double(9,6)         | NO   |     | NULL    |                |
+| longitude  | double(9,6)         | NO   |     | NULL    |                |
+| created_at | timestamp           | YES  |     | NULL    |                |
+| updated_at | timestamp           | YES  |     | NULL    |                |
++------------+---------------------+------+-----+---------+----------------+
 
 ## Ⅴ実装機能
 　・CRUD処理
