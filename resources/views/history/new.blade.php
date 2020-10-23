@@ -1,8 +1,8 @@
 @extends('layouts.route_layout')
 
 @section('content')
-    <div class="container">
-        <a href={{ route('history.list') }}>戻る</a> 
+    <div class="container form-area">
+        <a href={{ route('history.list') }} class="btn btn-outline-primary">戻る</a> 
         <div class="row justify-content-around">
             <p>{{ $member->user->name }}</p>
             <p>{{ $member->address }}</p>
@@ -24,7 +24,7 @@
                 {{ $errors->first('start') }}
                 </div>
                 <div class="row col-sm-12 col-md-4 location_list hide">
-                    <select id="location_list" class="end" name="location_id" size="5">
+                    <select id="location_list" class="end" name="location_id" size="4">
                         <option value='' disabled selected style='display:none;'>選択してください</option>
                         @foreach($locations as $location)
                             <option value="{{ $location->id }}">{{ $location->name }}</option>

@@ -2,10 +2,11 @@
 
 @section('content')
     <div class="row">
-        <div class="container">
-        @can('admin')
-            <div><a href={{ route( 'history.new', [$id]) }} class="btn btn-outline-primary">出張登録</a></div>
-        @endcan
+        <div class="container row">
+            @can('admin')
+                <div><a href={{ route( 'history.new', [$id]) }} class="btn btn-outline-primary">出張登録</a></div>
+            @endcan
+            <div class="ml-auto">件数：{{ $histories->count() }}</div>
         </div>
         @if(isset($histories[0]))
             <table class="table table-striped table-hover">

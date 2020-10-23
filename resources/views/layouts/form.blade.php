@@ -31,4 +31,6 @@
             {{ $errors->first('longitude') }}
         </div>
     </div>
+    <div id="search" class="btn btn-primary">取得</div>
+    {{ Form::submit('登録', ['class' => 'btn btn-primary ml-3']) }}
 </div>

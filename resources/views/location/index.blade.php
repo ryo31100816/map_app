@@ -10,13 +10,12 @@
                 <a href={{ route('member.list') }} class="btn btn-outline-primary">メンバー</a>
             </div>
             <div class="col-md-6 text-center text-lg-right">
-                @can('admin')
                 {{ Form::open(['method' => 'GET', 'route' => 'location.list']) }}
                     {{ Form::input('text', 'search', null, ['placeHolder' => '目的地']) }}
                     {{ Form::submit('検索', array('class' => 'btn btn-primary')) }}
                 {{ Form::close() }}
-                @endcan
             </div>
+            <div class="ml-auto">件数：{{ $locations->count() }}</div>
         </div>
     </div>
     <table class="table table-striped table-hover">

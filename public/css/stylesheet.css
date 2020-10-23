@@ -8,12 +8,14 @@ body{
 
 #map{
     height: 50%; 
-    width: 100%;
+    width: 95%;
+    margin: auto;
 }
 
 #route{
     height: 40%; 
-    width: 100%;
+    width: 95%;
+    margin: auto;
     overflow: scroll;
 }
 
@@ -27,9 +29,13 @@ body{
 }
 
 .area{
-    width: 85%;
+    width: 100%;
 }
 
 .hide{
     display: none;
+}
+
+.form-area{
+    height: 60%;
 }

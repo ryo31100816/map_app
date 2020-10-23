@@ -2,10 +2,9 @@
 
 @section('content')
     {{ Form::model($member,['route' => ['member.update',$member->id]]) }}
-        @include('layouts.form')
-        <div class="form-group">
-            {{ Form::submit('編集する', ['class' => 'btn btn-primary']) }}
-            <a href={{ route('member.show', ['id' => $member->id]) }}>戻る</a>
+        <div class="container-fluid">
+            <a href={{ route('member.show', ['id' => $member->id]) }} class="btn btn-outline-primary">戻る</a>
         </div>
+        @include('layouts.form')
     {{ Form::close() }}
 @endsection

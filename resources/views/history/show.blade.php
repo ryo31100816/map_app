@@ -30,4 +30,16 @@
       <td>距離：{{ $history->distance }}</td>
     </tr>
   </table>
+  <div class="container row text-center">
+    <p>出張費：</p>
+    <p id="distance" class="ml-5"></p>
+    <p class="ml-5">×</p>
+    <p id="cost" class="ml-5"></p>
+    <p class="ml-5">＝</p>
+    <p id="total" class="ml-5"></p>
+  </div>
+  <script>
+    window.distance = {{ $history->distance }};
+  </script>
+  <script type="text/javascript" src="{{ asset('/js/cal.js') }}"></script>
 @endsection

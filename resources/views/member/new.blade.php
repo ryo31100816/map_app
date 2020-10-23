@@ -2,10 +2,9 @@
 
 @section('content')
     {{ Form::open(['route' => 'member.store']) }}
-        @include('layouts.form')
-        <div class="form-group">
-            {{ Form::submit('登録する', ['class' => 'btn btn-primary']) }}
-            <a href={{ route('member.list') }}>一覧に戻る</a>
+        <div class="container-fluid">
+            <a href={{ route('member.list') }} class="btn btn-outline-primary">一覧へ</a>
         </div>
+        @include('layouts.form')
     {{ Form::close() }}
 @endsection

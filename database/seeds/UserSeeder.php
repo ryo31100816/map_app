@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
                 'email_verified_at' => now(),
-                'password' => bcrypt('common_user'), // password
+                'password' => bcrypt('common_user'),
                 'member_id' => $i,
                 'role' => 5,
                 'remember_token' => Str::random(10)

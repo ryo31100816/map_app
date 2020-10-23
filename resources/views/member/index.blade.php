@@ -19,6 +19,7 @@
                 {{ Form::close() }}
                 @endcan
             </div>
+            <div class="ml-auto">件数：{{ $members->count() }}</div>
         </div>
     </div>
     <table class="table table-striped table-hover">

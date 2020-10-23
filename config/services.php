@@ -34,4 +34,8 @@ return [
         'apikey' => env('GOOGLE_MAP_API'),
     ],
 
+    'google-map-free' => [
+        'apikey' => env('GOOGLE_MAP_API_FREE'),
+    ],
+
 ];
