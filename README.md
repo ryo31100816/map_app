@@ -13,9 +13,9 @@ Password:　admin_user
 しかし旅費の計算は紙ベースで管理しているため過去の情報を調べるのは結構大変。<br>そんな旅費担当の業務を素早く、正確に助けてくれます。
 
 ## Ⅲ使用言語・環境・技術
-　Laravel 7
-　Mysql 5.7
-  GoogleMapAPI(Maps JavaScript API, Geocoding API, Directions API)
+　Laravel 7  
+　Mysql 5.7  
+  GoogleMapAPI(Maps JavaScript API, Geocoding API, Directions API)  
   さくらレンタルサーバー
 
 ## Ⅳテーブル
