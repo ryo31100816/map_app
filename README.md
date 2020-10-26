@@ -15,7 +15,7 @@ Password:　admin_user
 ## Ⅲ使用言語・環境・技術
 　Laravel 7  
 　Mysql 5.7  
-  GoogleMapAPI(Maps JavaScript API, Geocoding API, Directions API)  
+  GoogleMapAPI(Maps JavaScript API, Geocoding API, Directions API) 
   さくらレンタルサーバー
 
 ## Ⅳテーブル
