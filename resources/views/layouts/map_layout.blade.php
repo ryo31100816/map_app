@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     @include('layouts.head')
-    <script src="http://maps.google.com/maps/api/js?key={{ config('services.google-map.apikey') }}&language=ja"></script>
+    <script src="https://maps.google.com/maps/api/js?key={{ config('services.google-map.apikey') }}&language=ja"></script>
 </head>
 <body>
     <header>@include('layouts.header')</header>
