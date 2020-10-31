@@ -50,7 +50,7 @@ class HeadquartersController extends Controller
     {
         $title = 'Headquarters show';
         $headquarters = Headquarters::find(1);
-        return view('Headquarters/show', ['title' => $title], ['headquarters' => $headquarters]);
+        return view('headquarters/show', ['title' => $title], ['headquarters' => $headquarters]);
     }
 
     /**
@@ -63,7 +63,7 @@ class HeadquartersController extends Controller
     {
         $title = 'Headquarters edit';
         $headquarters = Headquarters::findOrFail($id);
-        return view('Headquarters/edit', ['title' => $title], ['headquarters' => $headquarters]);
+        return view('headquarters/edit', ['title' => $title], ['headquarters' => $headquarters]);
     }
 
     /**

@@ -6,6 +6,7 @@
     </div>
     {{ Form::model($headquarters,['route' => ['headquarters.update',$headquarters->id]]) }}
     <div class="container">
+    {{ Form::radio('search', 'address',true, ['id' => 'address_search', 'class' => 'form-check-input hide']) }}
         <div class="row">
             <div class="form-group col-lg-1">
                 {{ Form::label('address', 'Address:') }}
