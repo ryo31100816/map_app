@@ -23,10 +23,16 @@ function initialize(){
 
 function geocodingLocation(){
     //Geocoding API 住所を座標に変換
-    let address = document.getElementById('address').value;
+    let address = document.getElementById('address_search');
+    let param;
+    if(address.checked){
+        param = document.getElementById('address').value;
+    }else{
+        param = document.getElementById('name').value;
+    }
     let geocoder = new google.maps.Geocoder();
     geocoder.geocode({
-        'address': address,
+        'address': param,
         'language': 'ja',
         'region': 'jp'
       },function(results, status){
@@ -55,19 +61,23 @@ function geocodingLocation(){
             document.getElementById('longitude').value = latlng.lng();
             // 住所を取得
             let address = results[0].formatted_address;
-            console.log( address );
+            console.log(address);
             }
         }
       }
     );
   }
-  
-  
-    // 地図初期化（適当な場所を表示）
-    // let map = new google.maps.Map(document.getElementById("map"), {
-    //     zoom : 10,
-    //     center: new google.maps.LatLng(35.7, 139.7),
-    //     mayTypeId: google.maps.MapTypeId.ROADMAP
-    // });
-  
 
+$(function(){
+    if($('input[name="search"]:checked').val() === 'name'){
+        $('#address').prop('disabled', true);
+    }
+    $('input[name="search"]').change(function(){
+        if($('input[name="search"]:checked').val() === 'name'){
+            $('#address').prop('disabled', true);
+            $('#address').val("")
+        }else{
+            $('#address').prop('disabled', false);
+        }
+    });
+});
