@@ -61,6 +61,7 @@ function geocodingLocation(){
             document.getElementById('longitude').value = latlng.lng();
             // 住所を取得
             let address = results[0].formatted_address;
+            document.getElementById('address').value = address;
             console.log(address);
             }
         }
@@ -68,16 +69,16 @@ function geocodingLocation(){
     );
   }
 
-$(function(){
-    if($('input[name="search"]:checked').val() === 'name'){
-        $('#address').prop('disabled', true);
-    }
-    $('input[name="search"]').change(function(){
-        if($('input[name="search"]:checked').val() === 'name'){
-            $('#address').prop('disabled', true);
-            $('#address').val("")
-        }else{
-            $('#address').prop('disabled', false);
-        }
-    });
-});
+// $(function(){
+//     if($('input[name="search"]:checked').val() === 'name'){
+//         $('#address').prop('disabled', true);
+//     }
+//     $('input[name="search"]').change(function(){
+//         if($('input[name="search"]:checked').val() === 'name'){
+//             $('#address').prop('disabled', true);
+//             $('#address').val("")
+//         }else{
+//             $('#address').prop('disabled', false);
+//         }
+//     });
+// });
