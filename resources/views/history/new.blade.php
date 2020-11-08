@@ -20,7 +20,7 @@
                 {{ $errors->first('trip_date') }}
                 </div>
                 <div class="col-sm-12 col-md-2 start_check hide">
-                    <p>行先</p>
+                    <p>出発地</p>
                     {{ Form::label('start1', '本社:') }}
                     {{ Form::radio('start', '0', false, ['class' => 'start']) }}
                     {{ Form::label('start2', '自宅:') }}
