@@ -10,10 +10,13 @@ class LocationAPIController extends Controller
     public function locationAjax(Request $request)
     {
         $word = $request->get('word');
-        $query = Location::query();
-        $query->where('name', 'like', '%'.$word.'%');
-        $locations = $query->get();
-
+        if(isset($word)){
+            $query = Location::query();
+            $query->where('name', 'like', '%'.$word.'%');
+            $locations = $query->get();
+        }else{
+            $locations = Location::all();
+        }
         return json_encode($locations);
     }
 }
